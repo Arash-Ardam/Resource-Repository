@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <form method="POST" >
+        {% csrf_token %}
+        <h2>Delete Data</h2>
+        {{ form.as_p }}
+        <input type="submit" value="Delete" />
+    </form>
+</div>
+
+{% endblock content%}

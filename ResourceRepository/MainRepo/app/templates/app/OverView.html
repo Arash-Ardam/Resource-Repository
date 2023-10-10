@@ -1,0 +1,31 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Title</th>
+                <th>Description</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+                {% for item in repoDatas %}
+                <tr>
+                    <td>{{item.title}}</td>
+                    <td>{{item.descriptions}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <button type="button"><a href="Add">Add</a></button>
+    <button type="button"><a href="Delete">Delete</a></button>
+</div>
+
+
+{% endblock %}
