@@ -38,7 +38,7 @@ def Delete(request):
     if request.method == "POST":
         form = DeleteForm(request.POST)
         if form.is_valid():
-            query = RepoData.objects.filter(title = form.title)
+            query = RepoData.objects.filter(title = form.cleaned_data['title'])
             query.delete()
             return redirect('Delete')
 

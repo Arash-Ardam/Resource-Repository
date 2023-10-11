@@ -8,6 +8,7 @@
             <tr>
                 <th> Title</th>
                 <th>Description</th>
+                <th>file</th>
                 
             </tr>
         </thead>
@@ -16,6 +17,7 @@
                 <tr>
                     <td>{{item.title}}</td>
                     <td>{{item.descriptions}}</td>
+                    <td><a href={{item.dataFile}}>{{item.dataFile}}</a></td>
                 </tr>
                 {% endfor %}
         </tbody>
