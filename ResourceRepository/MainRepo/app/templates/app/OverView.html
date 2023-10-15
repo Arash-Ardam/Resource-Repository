@@ -3,13 +3,21 @@
 {% block content %}
 
 <div>
+    <form method="post" class="post-form">
+        {% csrf_token %}
+        {{ searchForm.as_p }}
+        <button type="submit">GO</button>
+    </form>
+</div>
+
+<div>
     <table class="table">
         <thead>
             <tr>
                 <th> Title</th>
                 <th>Description</th>
                 <th>file</th>
-                
+                <th>createdBy</th>
             </tr>
         </thead>
         <tbody>
@@ -17,7 +25,8 @@
                 <tr>
                     <td>{{item.title}}</td>
                     <td>{{item.descriptions}}</td>
-                    <td><a href={{item.dataFile}}>{{item.dataFile}}</a></td>
+                    <td><a href="media/{{item.dataFile}}">{{item.dataFile}}</a></td>
+                    <td>{{item.user}} </td>
                 </tr>
                 {% endfor %}
         </tbody>

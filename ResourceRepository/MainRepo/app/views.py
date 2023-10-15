@@ -11,23 +11,35 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpRequest
+from django.urls import is_valid_path
 from app.models import *
-from app.forms import DataForm, DeleteForm, RegisterForm
+from app.forms import DataForm, DeleteForm, RegisterForm, searchForm
 
 # @login_required
 def OverView(request):
-    repoDatas = RepoData.objects.all()    
-    return render(request ,'app/OverView.html' , {"repoDatas" : repoDatas})
+    
+    if request.method == "GET":
+        searchform = searchForm(request.GET)
+        repoDatas = RepoData.objects.all()  
+        return render(request ,'app/OverView.html' , {"repoDatas" : repoDatas,"searchForm" : searchform})
+    
+    if request.method == "POST":
+        searchform = searchForm(request.POST)
+        if searchform.is_valid():
+            repoDatas = RepoData.objects.filter(title__icontains = searchform.cleaned_data['search'])
+            return render(request,'app/OverView.html',{"searchForm" : searchform,"repoDatas" : repoDatas})
 # @login_required
 def Data(request):
     if request.method == "GET":
         form = DataForm()
         return render(request,'app/DataForm.html',{'form' : form})
     if request.method == "POST":
-        form = DataForm(request.POST)
+        form = DataForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
         return redirect('Add')
+
 
 
 def Delete(request):

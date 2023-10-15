@@ -31,7 +31,10 @@ class RegisterForm(UserCreationForm):
 class DataForm(forms.ModelForm):
     class Meta:
         model = RepoData
-        fields = "__all__"
+        exclude = ('user',)
         
 class DeleteForm(forms.Form):
     title = forms.CharField(max_length=25)
+    
+class searchForm(forms.Form):
+    search = forms.CharField(max_length=250)

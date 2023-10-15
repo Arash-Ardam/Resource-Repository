@@ -3,8 +3,10 @@ Definition of urls for MainRepo.
 """
 
 from datetime import datetime
-from django.urls import path
+from django.urls import path, re_path
+from django.conf import settings
 from django.contrib import admin
+from django.views.static import serve
 from django.contrib.auth.views import LoginView, LogoutView
 from app import forms, views
 
@@ -32,3 +34,8 @@ urlpatterns = [
     path('register/',views.sign_up,name='register'),
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG :
+    urlpatterns += [
+        re_path(r'^OverView/media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT,}),
+        ]
