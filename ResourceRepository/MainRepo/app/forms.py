@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from app.models import RepoData 
+from app.models import RepoData , RepoComments 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
@@ -38,3 +38,8 @@ class DeleteForm(forms.Form):
     
 class searchForm(forms.Form):
     search = forms.CharField(max_length=250)
+    
+class commentForm(forms.ModelForm):
+    class Meta:
+        model = RepoComments
+        fields = "__all__"

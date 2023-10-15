@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>comment</th>
+                <th>relatedTo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in comments %}
+            <tr>
+                <td>{{item.comment}}</td>
+                <td>{{item.relatedTo}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <button type="button"><a href="comments/Add">Add comment</a></button>
+</div>
+
+{% endblock %} 

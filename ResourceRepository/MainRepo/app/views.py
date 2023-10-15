@@ -13,7 +13,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpRequest
 from django.urls import is_valid_path
 from app.models import *
-from app.forms import DataForm, DeleteForm, RegisterForm, searchForm
+from app.forms import DataForm, DeleteForm, RegisterForm, commentForm, searchForm
 
 # @login_required
 def OverView(request):
@@ -53,6 +53,23 @@ def Delete(request):
             query = RepoData.objects.filter(title = form.cleaned_data['title'])
             query.delete()
             return redirect('Delete')
+
+def comment(request):
+    if request.method == "GET":
+        comments = RepoComments.objects.all()
+        return render(request,'app/comment.html',{'comments': comments})
+
+def AddComment(request):
+    if request.method == "GET":
+        form = commentForm(request.GET)
+        return render(request,'app/AddComment.html',{'form': form})
+    if request.method == "POST":
+        form = commentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('comment')
+
+
 
 def sign_up(request):
     if request.method == "GET":

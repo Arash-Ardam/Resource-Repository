@@ -18,6 +18,10 @@ class RepoData(models.Model):
     def __str__(self):
         return self.title
     
+class RepoComments(models.Model):
+    comment = models.TextField(max_length=250)
+    relatedTo = models.ForeignKey(RepoData,on_delete=models.CASCADE)
+    
 
     
 

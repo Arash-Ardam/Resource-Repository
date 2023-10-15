@@ -55,6 +55,8 @@
     <Folder Include="MainRepo\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\AddComment.html" />
+    <Content Include="app\templates\app\comment.html" />
     <Content Include="app\templates\app\DataForm.html" />
     <Content Include="app\templates\app\OverView.html" />
     <Content Include="app\templates\app\register.html" />
