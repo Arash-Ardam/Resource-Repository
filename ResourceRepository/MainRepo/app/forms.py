@@ -26,7 +26,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        exclude = ('user_permissions','groups','is_superuser','last_login','is_staff','is_active','password','date_joined')
 
 class DataForm(forms.ModelForm):
     class Meta:
@@ -42,4 +42,4 @@ class searchForm(forms.Form):
 class commentForm(forms.ModelForm):
     class Meta:
         model = RepoComments
-        fields = "__all__"
+        exclude = ('user',)

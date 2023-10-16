@@ -8,6 +8,7 @@
             <tr>
                 <th>comment</th>
                 <th>relatedTo</th>
+                <th>author</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <tr>
                 <td>{{item.comment}}</td>
                 <td>{{item.relatedTo}}</td>
+                <td><a href="{% url 'user' item.user.username %}">{{item.user}}</a> </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -22,7 +24,7 @@
 </div>
 
 <div>
-    <button type="button"><a href="comments/Add">Add comment</a></button>
+    <button type="button"><a href="Add">Add comment</a></button>
 </div>
 
 {% endblock %} 

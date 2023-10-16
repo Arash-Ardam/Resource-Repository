@@ -18,8 +18,9 @@ urlpatterns = [
     path('OverView/', views.OverView , name = 'OverView'),
     path('OverView/Add',views.Data, name = 'Add'),
     path('OverView/Delete',views.Delete,name = 'Delete'),
-    path('Overview/comment',views.comment,name = 'comment'),
-    path('OverView/comment/Add',views.AddComment,name = 'AddComment'),
+    path('users/<username>',views.user,name = 'user'),
+    path('comment/',views.comment,name = 'comment'),
+    path('comment/Add',views.AddComment,name = 'AddComment'),
     path('login/',
          LoginView.as_view
          (

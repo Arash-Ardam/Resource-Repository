@@ -21,6 +21,7 @@ class RepoData(models.Model):
 class RepoComments(models.Model):
     comment = models.TextField(max_length=250)
     relatedTo = models.ForeignKey(RepoData,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     
 
     

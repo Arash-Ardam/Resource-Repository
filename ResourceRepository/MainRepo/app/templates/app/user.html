@@ -1,0 +1,26 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> username</th>
+                <th>firstname</th>
+                <th>lastname</th>
+                <th>email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{user.username}}</td>
+                <th>{{user.first_name}}</th>
+                <th>{{user.last_name}}</th>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %} 

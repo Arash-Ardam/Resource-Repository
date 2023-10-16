@@ -26,7 +26,7 @@
                     <td>{{item.title}}</td>
                     <td>{{item.descriptions}}</td>
                     <td><a href="media/{{item.dataFile}}">{{item.dataFile}}</a></td>
-                    <td>{{item.user}} </td>
+                    <td><a href="{% url 'user' item.user.username %}">{{item.user}}</a> </td>
                 </tr>
                 {% endfor %}
         </tbody>
@@ -36,7 +36,7 @@
 <div>
     <button type="button"><a href="Add">Add</a></button>
     <button type="button"><a href="Delete">Delete</a></button>
-    <button type="button"><a href="comment">Comments</a></button>
+    <button type="button"><a href="{% url 'comment' %}">Comments</a></button>
 </div>
 
 

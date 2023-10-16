@@ -4,6 +4,7 @@ Definition of views.
 
 from asyncio.windows_events import NULL
 from datetime import datetime
+from django.contrib.auth.models import User
 from turtle import title
 from urllib import request
 from django.shortcuts import get_object_or_404, render , redirect
@@ -66,10 +67,14 @@ def AddComment(request):
     if request.method == "POST":
         form = commentForm(request.POST)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
             return redirect('comment')
 
-
+def user(request,username):
+    if request.method == "GET":
+        user = get_object_or_404(User,username = username)
+        return render(request,'app/user.html',{'user':user})
 
 def sign_up(request):
     if request.method == "GET":
