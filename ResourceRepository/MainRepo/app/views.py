@@ -4,6 +4,7 @@ Definition of views.
 
 from asyncio.windows_events import NULL
 from datetime import datetime
+from webbrowser import get
 from django.contrib.auth.models import User
 from turtle import title
 from urllib import request
@@ -41,7 +42,23 @@ def Data(request):
             form.save()
         return redirect('Add')
 
+def UpdateData(request,title):
+    existData = RepoData.objects.get(title=title)
+    if request.user != existData.user:
+        return redirect('OverView')
+    else:
+        if request.method == "GET":
+            form = DataForm(instance=existData)
+            return render(request,'app/Update.html',{'form':form})
+        if request.method == "POST":
+            form = DataForm(request.POST,request.FILES,instance=existData)
+            if form.is_valid():
+                form.instance.user = request.user
+                form.save()
+                return redirect('OverView')
+    
 
+    
 
 def Delete(request):
     if request.method == "GET":
@@ -51,9 +68,12 @@ def Delete(request):
     if request.method == "POST":
         form = DeleteForm(request.POST)
         if form.is_valid():
-            query = RepoData.objects.filter(title = form.cleaned_data['title'])
-            query.delete()
-            return redirect('Delete')
+            query = RepoData.objects.filter(title = form.cleaned_data['title']).first()
+            if request.user != query.user:
+                return redirect('OverView')
+            else:
+                query.delete()
+                return redirect('Delete')
 
 def comment(request):
     if request.method == "GET":

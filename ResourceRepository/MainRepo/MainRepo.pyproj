@@ -60,6 +60,8 @@
     <Content Include="app\templates\app\DataForm.html" />
     <Content Include="app\templates\app\OverView.html" />
     <Content Include="app\templates\app\register.html" />
+    <Content Include="app\templates\app\Update.html" />
+    <Content Include="app\templates\app\user.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

@@ -27,6 +27,7 @@
                     <td>{{item.descriptions}}</td>
                     <td><a href="media/{{item.dataFile}}">{{item.dataFile}}</a></td>
                     <td><a href="{% url 'user' item.user.username %}">{{item.user}}</a> </td>
+                    <td><button type="button"><a href="{%url 'update' item.title %}">Update</a></button></td>
                 </tr>
                 {% endfor %}
         </tbody>

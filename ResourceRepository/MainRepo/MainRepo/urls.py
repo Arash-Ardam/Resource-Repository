@@ -17,6 +17,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('OverView/', views.OverView , name = 'OverView'),
     path('OverView/Add',views.Data, name = 'Add'),
+    path('OverView/Update/<title>',views.UpdateData,name='update'),
     path('OverView/Delete',views.Delete,name = 'Delete'),
     path('users/<username>',views.user,name = 'user'),
     path('comment/',views.comment,name = 'comment'),
