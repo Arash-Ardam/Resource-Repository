@@ -17,7 +17,7 @@ from django.urls import is_valid_path
 from app.models import *
 from app.forms import DataForm, DeleteForm, RegisterForm, commentForm, searchForm
 
-# @login_required
+@login_required
 def OverView(request):
     
     if request.method == "GET":
@@ -30,7 +30,7 @@ def OverView(request):
         if searchform.is_valid():
             repoDatas = RepoData.objects.filter(title__icontains = searchform.cleaned_data['search'])
             return render(request,'app/OverView.html',{"searchForm" : searchform,"repoDatas" : repoDatas})
-# @login_required
+
 def Data(request):
     if request.method == "GET":
         form = DataForm()
@@ -134,7 +134,7 @@ def contact(request):
         'app/contact.html',
         {
             'title':'Contact',
-            'message':'Your contact page.',
+            'message':'Contact Me :))',
             'year':datetime.now().year,
         }
     )
@@ -146,8 +146,8 @@ def about(request):
         request,
         'app/about.html',
         {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'Project Summery',
+            'message':'Resource Repository',
             'year':datetime.now().year,
         }
     )
